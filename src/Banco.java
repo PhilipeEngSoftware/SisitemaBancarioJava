@@ -50,10 +50,16 @@ public class Banco {
         
     }
     public void transferir(String origem, String destino, double valor){
+                
                 Conta contaOrigem = this.buscarConta(origem);
-                Conta contaDestino = this.buscarConta(destino);
                 contaOrigem.sacar(valor);
+                Transacao transacaoEnviada = new Transacao(TipoTransacao.TRANSFERENCIA_ENVIADA, valor, "Transferencia enviada para conta");
+                contaOrigem.registrarTransacao(transacaoEnviada);
+                Conta contaDestino = this.buscarConta(destino);
                 contaDestino.depositar(valor);
+                Transacao transacaoRecebida = new Transacao(TipoTransacao.TRANSFERENCIA_RECEBIDA, valor, "Transacao Recebida na Conta");
+                contaDestino.registrarTransacao(transacaoRecebida);
+                
 
         }
 

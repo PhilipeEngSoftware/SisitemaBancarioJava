@@ -12,9 +12,12 @@ public class ContaCorrente extends Conta {
     @Override
     public void sacar(double novoSaldo) {
        double saldoDisponivel  = saldo + limite; 
+
         if (novoSaldo <= saldoDisponivel) {
-            System.out.println("aque comcluido.");
+            System.out.println("saque comcluido.");
             this.saldo -= novoSaldo;
+            Transacao transacao = new Transacao(TipoTransacao.SAQUE, novoSaldo, "Saque Realizado"); 
+            this.historico.add(transacao);
         }else {
             throw new SaldoInsuficienteException("Saldo insuficiente para saque.");
         }

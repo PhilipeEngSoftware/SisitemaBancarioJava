@@ -15,6 +15,8 @@ public class ContaPoupanca extends Conta {
         // TODO Auto-generated method stub
         if(novoSaldo <= saldo){
             saldo = saldo - novoSaldo;
+            Transacao transacao = new Transacao(TipoTransacao.SAQUE, novoSaldo, "Saque realizado");
+            this.historico.add(transacao); 
         }else{
            throw new SaldoInsuficienteException("Saldo insuficiente para saque.");
         }

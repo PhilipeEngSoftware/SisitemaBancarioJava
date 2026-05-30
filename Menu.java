@@ -18,6 +18,8 @@ public class Menu {
                 System.out.println("4 - Sacar");
                 System.out.println("5 - Ver saldo");
                 System.out.println("6 - Listar contas");
+                System.out.println("7 - Transferir entre contas");
+                System.out.println("8 - Exibir histórico");
                 System.out.println("0 - Sair");
             opcao = scanner.nextLine();
             switch(opcao){
@@ -87,7 +89,7 @@ public class Menu {
                     banco.listaContas();
                     break;
                 
-                case "7": //Transferir
+                case "7": //Transferir entre contas
                     try {
                         System.out.println("Digite o numero da conta de origem");
                         String contaOrigem = scanner.nextLine();
@@ -104,6 +106,18 @@ public class Menu {
                         System.out.println("Conta nao encontrada. " + e.getMessage());
                     }
                     break;
+                case "9": // Exibir Historico
+                    try{
+                        System.out.println("Digite o numero da conta");
+                        String numeroConta3 = scanner.nextLine();
+                        Conta conta = banco.buscarConta(numeroConta3);
+                        conta.exibirHistorico();
+
+                    } catch (ContaNaoEncontradaException e) {
+                        System.out.println("Conta nao encontrada." + e.getMessage());
+                    }
+                    break;
+                        
                     
                 case "0": // sair
                     System.out.println("Saindo do sistema. Obrigado por usar o Banco!");
