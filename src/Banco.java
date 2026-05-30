@@ -47,7 +47,15 @@ public class Banco {
             this.contas.put(numeroConta, contaPoupanca);
             cliente.cadastrarConta(contaPoupanca);
         }
+        
     }
+    public void transferir(String origem, String destino, double valor){
+                Conta contaOrigem = this.buscarConta(origem);
+                Conta contaDestino = this.buscarConta(destino);
+                contaOrigem.sacar(valor);
+                contaDestino.depositar(valor);
+
+        }
 
 
 

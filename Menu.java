@@ -86,6 +86,25 @@ public class Menu {
                     System.out.println("Listando contas:");
                     banco.listaContas();
                     break;
+                
+                case "7": //Transferir
+                    try {
+                        System.out.println("Digite o numero da conta de origem");
+                        String contaOrigem = scanner.nextLine();
+                        System.out.println("Digite qual  a conta de destino:");
+                        String contaDestino = scanner.nextLine();
+                        System.out.println("Digite o valor desejado TRansferir:");
+                        double valor = scanner.nextDouble();
+                        System.out.println("Valoe Sera Transferido de " + valor);
+                        banco.transferir(contaOrigem, contaDestino, valor);   
+                    } catch (SaldoInsuficienteException e) {
+                        System.out.println("Saldo insuficiente. " + e.getMessage());
+                    }
+                    catch (ContaNaoEncontradaException e) {
+                        System.out.println("Conta nao encontrada. " + e.getMessage());
+                    }
+                    break;
+                    
                 case "0": // sair
                     System.out.println("Saindo do sistema. Obrigado por usar o Banco!");
                     break;
